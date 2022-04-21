@@ -1,0 +1,4 @@
+invoke
+pyinstaller
+tqdm
+matplotlib
