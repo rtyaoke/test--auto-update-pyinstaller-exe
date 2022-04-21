@@ -45,9 +45,11 @@ def download_file(url: str, save_name: str):
 
 
 def main():
-    url = "https://esahubble.org/media/archives/images/original/heic1901a.tif"
-    save_name = "heic1901a.jpg"
+    # url = "https://esahubble.org/media/archives/images/original/heic1901a.tif"
+    url = "https://www.rysys.co.jp/dpex/download/exifr_350.zip"
+    save_name = "exifr_350.zip"
     created_file = download_file(url, save_name)
+    print(created_file)
 
 
 if __name__ == '__main__':

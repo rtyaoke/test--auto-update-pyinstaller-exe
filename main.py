@@ -1,5 +1,7 @@
 from tkinter import messagebox
 
+import download
+
 
 def main():
     print("hello from main.py")
@@ -11,17 +13,14 @@ def main():
 def checkUpdate():
 
     # バージョンチェック
-    if common.system["version"] != str(common.information[0].system_version):
+    # if common.system["version"] != str(common.information[0].system_version):
 
-        # ダウンロード
-        file_size = 50029115
-        res = requests.get(self.url, stream=True)
-        pbar = tqdm(total=file_size, unit="B", unit_scale=True)
-        with open(self.save_name, 'wb') as file:
-            for chunk in res.iter_content(chunk_size=1024):
-                file.write(chunk)
-                pbar.update(len(chunk))
-            pbar.close()
+    url = "https://esahubble.org/media/archives/images/original/heic1901a.tif"
+    save_name = "heic1901a.tif"
+    # url = "https://www.rysys.co.jp/dpex/download/exifr_350.zip"
+    # save_name = "exifr_350.zip"
+    created_file = download.download_file(url, save_name)
+    print(created_file)
 
 
 if __name__ == "__main__":
