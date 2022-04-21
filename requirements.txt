@@ -2,3 +2,4 @@ invoke
 pyinstaller
 tqdm
 matplotlib
+requests
