@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10.1"
+
+      - name: Get Python version
+        run: python -V
+
+      - name: Setup Python packages
+        run: |
+          pip install invoke
+          invoke setup
+
+      # - name: Test
+      #   run: invoke test
+
+      - name: Build
+        run: |
+          invoke build
+
+      # - name: Increment value
+      #   uses: yoichiro/gh-action-increment-value@main
+      #   with:
+      #     target_directory: ''
+      #     target_file: 'version.json'
+      #     prefix: '{"buildNumber":'
+      #     suffix: '}'
+
+      # - name: Read certificate
+      #   id: certificate
+      #   uses: juliangruber/read-file-action@v1
+      #   with:
+      #     path: ./credentials/pfx-encoded-bytes.txt
+      #     trim: true
+
+      # - name: Read certhash
+      #   id: certhash
+      #   uses: juliangruber/read-file-action@v1
+      #   with:
+      #     path: ./credentials/certhash.txt
+      #     trim: true
+
+      # - name: Sign To exe
+      #   uses: DanaBear/code-sign-action@master
+      #   with:
+      #     certificate: '${{ steps.certificate.outputs.content }}'
+      #     password: 'roadfrontier'
+      #     certificatesha1: '${{ steps.certhash.outputs.content }}'
+      #     certificatename: 'roadfrontier'
+      #     folder: 'dist'
+      #     timestampUrl: 'http://timestamp.digicert.com'
+      #     recursive: true
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test--auto-update-pyinstaller-exe.exe
+          path: dist/test--auto-update-pyinstaller-exe.exe
