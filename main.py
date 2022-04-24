@@ -15,8 +15,8 @@ def checkUpdate():
     # バージョンチェック
     # if common.system["version"] != str(common.information[0].system_version):
 
-    url = "https://esahubble.org/media/archives/images/original/heic1901a.tif"
-    save_name = "heic1901a.tif"
+    url = "https://github.com/rtyaoke/test--auto-update-pyinstaller-exe/releases/download/v_2022-04-21_13-57/test--auto-update-pyinstaller-exe.exe"
+    save_name = "run.exe"
     # url = "https://www.rysys.co.jp/dpex/download/exifr_350.zip"
     # save_name = "exifr_350.zip"
     created_file = download.download_file(url, save_name)
